@@ -125,6 +125,35 @@ li:hover {
 	text-align: center;
 	margin-bottom: 1em;
 }
+
+.filters {
+	display: flex;
+	justify-content: center;
+	margin-bottom: 50px;
+	margin-top: 50px;
+}
+
+.filters button {
+	box-sizing: border-box;
+	min-width: 100px;
+	height: 37px;
+	margin-right: 10px;
+	font-size: 16px;
+	font-family: 'Syne', sans-serif;
+	padding-right: 10px;
+	padding-left: 10px;
+	border: 1px solid #1D6154;
+	border-radius: 60px;
+	color: #1D6154;
+	background-color: white;
+	cursor: pointer;
+}
+
+.filters button:hover {
+	background-color: #1D6154;
+	color: white;
+}
+
 .gallery {
 	width: 100%;
 	display: grid;

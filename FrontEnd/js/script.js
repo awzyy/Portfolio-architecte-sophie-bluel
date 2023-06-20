@@ -1,16 +1,54 @@
-fetch('http://localhost:5678/api/works')
+const gallery = document.querySelector('.gallery');
+const filtersAll = document.getElementById('filters-all');
+const filtersObjects = document.getElementById('filters-objects');
+const filtersAppartments = document.getElementById('filters-appartments');
+const filtersHotels = document.getElementById('filters-hotels');
+let allWorks = [];
+let categories = [];
+
+function updateGallery(works) {
+  gallery.innerHTML = ""; 
+
+  works.forEach(work => {
+    const figure = document.createElement('figure');
+    const image = document.createElement('img');
+    const figcaption = document.createElement('figcaption');
+    image.src = work.imageUrl;
+    figcaption.textContent = work.title;
+    figure.appendChild(image);
+    figure.appendChild(figcaption);
+    gallery.appendChild(figure);
+  });
+}
+
+function fetchCategories() {
+  return fetch("http://localhost:5678/api/categories")
+    .then(response => response.json());
+}
+
+function fetchWorks() {
+  return fetch("http://localhost:5678/api/works")
     .then(response => response.json())
     .then(works => {
-
-        works.forEach(work => {
-            const gallery = document.getElementsByClassName('gallery')[0]
-            const figure = document.createElement('figure')
-            const image = document.createElement('img');
-            image.src = work.imageUrl;
-            const figcaption = document.createElement('figcaption');
-            gallery.appendChild(figure)
-            figure.appendChild(image)
-            figure.appendChild(figcaption)
-        });
-
+      allWorks = works;
+      updateGallery(allWorks);
     });
+}
+
+function filterWorksByCategory(categoryName) {
+  const categoryId = categories.find(category => category.name === categoryName).id;
+  const filtered = allWorks.filter(work => work.categoryId === categoryId);
+  updateGallery(filtered);
+}
+
+fetchCategories()
+  .then(categoriesData => {
+    categories = categoriesData;
+    return fetchWorks();
+  });
+
+filtersAll.addEventListener('click', () => updateGallery(allWorks));
+filtersObjects.addEventListener('click', () => filterWorksByCategory('Objets'));
+filtersAppartments.addEventListener('click', () => filterWorksByCategory('Appartements'));
+filtersHotels.addEventListener('click', () => filterWorksByCategory('Hotels & restaurants'));
+

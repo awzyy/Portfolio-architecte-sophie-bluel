@@ -3,6 +3,7 @@ const filtersAll = document.getElementById('filters-all');
 const filtersObjects = document.getElementById('filters-objects');
 const filtersAppartments = document.getElementById('filters-appartments');
 const filtersHotels = document.getElementById('filters-hotels');
+
 let allWorks = [];
 let categories = [];
 
@@ -21,18 +22,16 @@ function updateGallery(works) {
   });
 }
 
-function fetchCategories() {
-  return fetch("http://localhost:5678/api/categories")
-    .then(response => response.json());
+async function fetchCategories() {
+  const response = await fetch("http://localhost:5678/api/categories");
+  return response.json();
 }
 
-function fetchWorks() {
-  return fetch("http://localhost:5678/api/works")
-    .then(response => response.json())
-    .then(works => {
-      allWorks = works;
-      updateGallery(allWorks);
-    });
+async function fetchWorks() {
+  const response = await fetch("http://localhost:5678/api/works");
+  const works = await response.json();
+  allWorks = works;
+  updateGallery(allWorks);
 }
 
 function filterWorksByCategory(categoryName) {
@@ -51,4 +50,3 @@ filtersAll.addEventListener('click', () => updateGallery(allWorks));
 filtersObjects.addEventListener('click', () => filterWorksByCategory('Objets'));
 filtersAppartments.addEventListener('click', () => filterWorksByCategory('Appartements'));
 filtersHotels.addEventListener('click', () => filterWorksByCategory('Hotels & restaurants'));
-

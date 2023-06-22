@@ -1,3 +1,5 @@
+import { fetchCategories } from "./api/api.js";
+
 const gallery = document.querySelector('.gallery');
 const filtersAll = document.getElementById('filters-all');
 const filtersObjects = document.getElementById('filters-objects');
@@ -22,10 +24,7 @@ function updateGallery(works) {
   });
 }
 
-async function fetchCategories() {
-  const response = await fetch("http://localhost:5678/api/categories");
-  return response.json();
-}
+
 
 async function fetchWorks() {
   const response = await fetch("http://localhost:5678/api/works");

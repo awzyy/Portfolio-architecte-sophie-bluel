@@ -1,4 +1,5 @@
 import { fetchCategories } from "./api/api.js";
+// import { fetchWorks } from "./api/api.js";
 
 const gallery = document.querySelector('.gallery');
 const filtersAll = document.getElementById('filters-all');
@@ -23,8 +24,6 @@ function updateGallery(works) {
     gallery.appendChild(figure);
   });
 }
-
-
 
 async function fetchWorks() {
   const response = await fetch("http://localhost:5678/api/works");

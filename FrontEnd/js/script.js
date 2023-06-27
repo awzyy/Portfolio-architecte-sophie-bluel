@@ -1,5 +1,4 @@
-import { fetchCategories } from "./api/api.js";
-// import { fetchWorks } from "./api/api.js";
+import { fetchCategories, fetchWorks } from "./api/api.js";
 
 const gallery = document.querySelector('.gallery');
 const filtersAll = document.getElementById('filters-all');
@@ -25,11 +24,12 @@ function updateGallery(works) {
   });
 }
 
-async function fetchWorks() {
-  const response = await fetch("http://localhost:5678/api/works");
-  const works = await response.json();
-  allWorks = works;
-  updateGallery(allWorks);
+async function updateGalleryWithWorks() {
+  await fetchWorks()
+    .then(works => {
+      allWorks = works;
+      updateGallery(allWorks);
+    })
 }
 
 function filterWorksByCategory(categoryName) {
@@ -41,8 +41,8 @@ function filterWorksByCategory(categoryName) {
 fetchCategories()
   .then(categoriesData => {
     categories = categoriesData;
-    return fetchWorks();
-  });
+    return updateGalleryWithWorks();
+  })
 
 filtersAll.addEventListener('click', () => updateGallery(allWorks));
 filtersObjects.addEventListener('click', () => filterWorksByCategory('Objets'));

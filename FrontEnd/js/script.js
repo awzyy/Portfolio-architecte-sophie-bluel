@@ -48,3 +48,18 @@ filtersAll.addEventListener('click', () => updateGallery(allWorks));
 filtersObjects.addEventListener('click', () => filterWorksByCategory('Objets'));
 filtersAppartments.addEventListener('click', () => filterWorksByCategory('Appartements'));
 filtersHotels.addEventListener('click', () => filterWorksByCategory('Hotels & restaurants'));
+
+
+//login
+const loginText = document.getElementById('login-text')
+
+const isloggedIn = typeof localStorage.getItem('token') === 'string'
+
+if (isloggedIn) {
+    loginText.innerText = "logout"
+    const hiddenElements = document.querySelectorAll('.hidden')
+    hiddenElements.forEach(element => {
+        element.classList.remove('hidden');
+    });
+
+}

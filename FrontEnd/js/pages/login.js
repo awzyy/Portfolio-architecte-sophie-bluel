@@ -1,7 +1,7 @@
+const loginForm = document.querySelector('form')
 const inputEmail = document.getElementById('email')
 const inputPassword = document.getElementById('password')
 const submitButton = document.getElementById('connexion')
-const loginForm = document.querySelector('form')
 const errorContainer = document.getElementById('error-container')
 
 loginForm.addEventListener('submit', (event) => {

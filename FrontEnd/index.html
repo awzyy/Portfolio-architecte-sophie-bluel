@@ -8,12 +8,16 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
+	<script src="https://kit.fontawesome.com/1b67ca9c39.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="./assets/style.css">
 	<script type="module" src="./js/script.js" defer></script>
-	<script src="./js/pages/login.js" defer></script>
-	<script type="module" src="./js/api/api.js" defer></script>
 </head>
+
 <body>
+	<div id="edition-block" class="hidden">
+		<button class="edition-button show-modal"><i class="fa-regular fa-pen-to-square"></i>Mode édition</button>
+		<input class="edition-input" value="Publier les changements">
+	</div>
 <header>
 	<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
 	<nav>
@@ -25,6 +29,7 @@
 		</ul>
 	</nav>
 </header>
+
 <main>
 	<section id="introduction">
 		<figure>

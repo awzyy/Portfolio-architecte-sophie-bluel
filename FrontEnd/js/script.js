@@ -63,3 +63,12 @@ if (isloggedIn) {
     });
 
 }
+
+function disconnect(){
+  localStorage.removeItem("token");
+}
+
+const logout = document.getElementById("login-text")
+logout.addEventListener('click', () => {
+  disconnect()
+});

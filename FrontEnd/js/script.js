@@ -72,3 +72,14 @@ const logout = document.getElementById("login-text")
 logout.addEventListener('click', () => {
   disconnect()
 });
+
+//modal 
+
+const modal = document.getElementById('modal')
+const showModal = document.querySelectorAll('.show-modal')
+
+showModal.forEach((button) => {
+    button.addEventListener('click', () => {
+        modal.showModal()
+    })
+})

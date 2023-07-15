@@ -77,9 +77,40 @@ logout.addEventListener('click', () => {
 
 const modal = document.getElementById('modal')
 const showModal = document.querySelectorAll('.show-modal')
+const workModal = document.getElementById('workModal');
+const galleryModal = document.querySelector('.gallery-modal')
 
 showModal.forEach((button) => {
     button.addEventListener('click', () => {
         modal.showModal()
     })
 })
+
+//to close the modal 
+
+const closeModalCross = document.querySelector(".close-modal")
+const closeModalOutside = document.querySelectorAll('.modal');
+const closeModalCrossWorkModal = document.querySelector(".close-work-modal");
+const backToModalButton = document.getElementById('backToModalButton')
+
+
+closeModalCross.addEventListener('click', closeModal);
+modal.addEventListener('click', (event) => {
+    if (event.target === modal || event.target === workModal) {
+        closeModal();
+    }
+});
+
+workModal.addEventListener('click', (event) => {
+    if (event.target === workModal) {
+        closeModal();
+    }
+});
+
+function closeModal() {
+    modal.close();
+    workModal.close();
+}
+
+closeModalCrossWorkModal.addEventListener('click', closeModal)
+

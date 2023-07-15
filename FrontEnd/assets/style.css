@@ -209,7 +209,7 @@ a {
 
 #introduction img {
 	display: block;
-	margin: auto;
+	margin-right: auto;
 	width: 80%;
 }
 
@@ -224,6 +224,11 @@ a {
 
 #introduction p {
 	margin-bottom: 0.5em;
+}
+
+.main-container{
+	margin: auto;
+	width: 90%;
 }
 
 #portfolio h2 {
@@ -455,7 +460,7 @@ i {
 }
 
 figcaption {
-	margin-left: 58px;
+	margin-left: 0px;
 	margin-top: 10px;
 	cursor: pointer;
 }

@@ -1,11 +1,12 @@
-const loginForm = document.querySelector('form')
 const inputEmail = document.getElementById('email')
 const inputPassword = document.getElementById('password')
 const submitButton = document.getElementById('connexion')
+const loginForm = document.querySelector('form')
 const errorContainer = document.getElementById('error-container')
 
 loginForm.addEventListener('submit', (event) => {
-    event.preventDefault() 
+    event.preventDefault()
+
 
     let data = {
         email: inputEmail.value,
@@ -24,7 +25,7 @@ loginForm.addEventListener('submit', (event) => {
                 return response.json()
             }
             else {
-                throw new Error("Email ou mot de passe incorrect")
+                throw new Error("Erreur dans l’identifiant ou le mot de passe")
             }
         })
         .then(response => {
@@ -33,8 +34,8 @@ loginForm.addEventListener('submit', (event) => {
         })
 
         .catch(error => {
-            errorContainer.textContent = "Email ou mot de passe incorrect"
+            errorContainer.textContent = "Erreur dans l’identifiant ou le mot de passe"
             errorContainer.style.color = "red"
-            console.error('Email ou mot de passe incorrect', error)
+            console.error('Erreur dans l’identifiant ou le mot de passe', error)
         })
 })

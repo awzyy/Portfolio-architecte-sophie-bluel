@@ -1,4 +1,6 @@
-import { fetchWorks, fetchCategories, deleteWork as deleteWorkApi, createWork } from '../api/api.js';
+import { fetchWorks, fetchCategories, deleteWork, createWork } from '../api/api.js';
+// import { removeWorkOnGallery } from '../utils/modal.js';
+import '../utils/modal.js';
 
 let allWorks = [];
 
@@ -12,7 +14,6 @@ function fetchAndGenerateWorks() {
       });
     });
 }
-
 fetchAndGenerateWorks();
 
 function addWorkToGallery(work) {
@@ -21,18 +22,16 @@ function addWorkToGallery(work) {
   figure.setAttribute('data-work-id', work.id);
   const image = document.createElement('img');
   const figcaption = document.createElement('figcaption');
-
   figure.appendChild(image);
   figure.appendChild(figcaption);
   gallery.appendChild(figure);
-
   image.src = work.imageUrl;
   figcaption.textContent = work.title;
 }
 
+
 function addWorkToModal(work) {
   const galleryModal = document.querySelector('.gallery-modal');
-
   const modalFigure = document.createElement('figure');
   modalFigure.setAttribute('data-work-id', work.id);
   const modalImage = document.createElement('img');
@@ -50,7 +49,7 @@ function addWorkToModal(work) {
   galleryModal.appendChild(modalFigure);
   deleteIcon.addEventListener('click', (event) => {
     event.preventDefault();
-    deleteWorkApi(work.id, localStorage.getItem('token')).then(deleted => {
+    deleteWork(work.id, localStorage.getItem('token')).then(deleted => {
       if (deleted) {
         removeWorkOnGallery(work.id);
         allWorks = allWorks.filter(w => w.id !== work.id);
@@ -140,7 +139,6 @@ logout.addEventListener('click', () => {
 const modal = document.getElementById('modal');
 const workModal = document.getElementById('workModal');
 const showModal = document.querySelectorAll('.show-modal');
-const galleryModal = document.querySelector('.gallery-modal');
 
 showModal.forEach(button => {
   button.addEventListener('click', () => {
@@ -150,7 +148,6 @@ showModal.forEach(button => {
 
 // Closing Modal
 const closeModalCross = document.querySelector('.close-modal');
-const closeModalOutside = document.querySelectorAll('.modal');
 const closeModalCrossWorkModal = document.querySelector('.close-work-modal');
 const backToModalButton = document.getElementById('backToModalButton');
 
@@ -179,43 +176,27 @@ backToModalButton.addEventListener('click', function () {
   workModal.close();
 });
 
-// Deleting a Work
-function deleteWork(id) {
-  const accessToken = localStorage.getItem('token');
+//Deleting a Work
 
-  return deleteWork(id, accessToken)
-    .then(deleted => {
-      if (deleted) {
-        removeWorkOnGallery(id);
-        allWorks = allWorks.filter(work => work.id !== id);
-      } else {
-        console.error('Deletion failed');
-      }
-    })
-    .catch(error => {
-      console.error('An error occurred', error);
-    });
-}
-
-function removeWorkOnGallery(workId) {
-  const figures = document.querySelectorAll(`figure[data-work-id="${workId}"]`);
-  if (figures) {
-    figures.forEach(figure => {
-      figure.remove();
-    });
-  }
-}
+// function removeWorkOnGallery(workId) {
+//   const figures = document.querySelectorAll(`figure[data-work-id="${workId}"]`);
+//   if (figures) {
+//     figures.forEach(figure => {
+//       figure.remove();
+//     });
+//   }
+// }
 
 // Adding New Work
-const addWorkButton = document.getElementById('addWorkButton');
-addWorkButton.addEventListener('click', openWorkModal);
+// const addWorkButton = document.getElementById('addWorkButton');
+// addWorkButton.addEventListener('click', openWorkModal);
 
-function openWorkModal() {
-  const modal = document.querySelector('.workModal');
-  if (modal) {
-    modal.showModal();
-  }
-}
+// function openWorkModal() {
+//   const modal = document.querySelector('.workModal');
+//   if (modal) {
+//     modal.showModal();
+//   }
+// }
 
 // Fetch Categories for Modal
 const categorySelectModal = document.getElementById('workCategory');

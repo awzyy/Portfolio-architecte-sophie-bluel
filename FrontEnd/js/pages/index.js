@@ -85,8 +85,15 @@ function filterAll() {
 
 // User Authentication
 const loginText = document.getElementById('login-text');
-
 const userAuthenticated = typeof localStorage.getItem('token') === 'string';
+const logout = document.getElementById('login-text');
+logout.addEventListener('click', () => {
+  disconnect();
+});
+
+function disconnect() {
+  localStorage.removeItem('token');
+}
 
 if (userAuthenticated) {
   loginText.innerText = 'logout';
@@ -96,11 +103,3 @@ if (userAuthenticated) {
   });
 }
 
-function disconnect() {
-  localStorage.removeItem('token');
-}
-
-const logout = document.getElementById('login-text');
-logout.addEventListener('click', () => {
-  disconnect();
-});

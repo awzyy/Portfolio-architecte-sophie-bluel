@@ -1,5 +1,17 @@
 import { fetchWorks, fetchCategories, deleteWork, createWork } from '../api/api.js';
 
+const addWorkButton = document.getElementById('addWorkButton');
+const modal = document.getElementById('modal');
+const workModal = document.getElementById('workModal');
+const showModal = document.querySelectorAll('.show-modal');
+const closeModalCross = document.querySelector('.close-modal');
+const closeModalCrossWorkModal = document.querySelector('.close-work-modal');
+const backToModalButton = document.getElementById('backToModalButton');
+const categorySelectModal = document.getElementById('workCategory');
+const uploadButtonLabel = document.getElementById('uploadButtonLabel');
+const photoPreview = document.getElementById('photo-preview');
+const fileInput = document.getElementById('uploadButton');
+
 export function addWorkToModal(work) {
   const galleryModal = document.querySelector('.gallery-modal');
   const modalFigure = document.createElement('figure');
@@ -38,7 +50,6 @@ export function removeWorkOnGallery(workId) {
 }
 
 // Adding New Work
-const addWorkButton = document.getElementById('addWorkButton');
 addWorkButton.addEventListener('click', openWorkModal);
 
 export function openWorkModal() {
@@ -49,10 +60,6 @@ export function openWorkModal() {
 }
 
 // Modal
-const modal = document.getElementById('modal');
-const workModal = document.getElementById('workModal');
-const showModal = document.querySelectorAll('.show-modal');
-
 showModal.forEach(button => {
   button.addEventListener('click', () => {
     modal.showModal();
@@ -60,10 +67,6 @@ showModal.forEach(button => {
 });
 
 // Closing Modal
-const closeModalCross = document.querySelector('.close-modal');
-const closeModalCrossWorkModal = document.querySelector('.close-work-modal');
-const backToModalButton = document.getElementById('backToModalButton');
-
 closeModalCross.addEventListener('click', closeModal);
 modal.addEventListener('click', event => {
   if (event.target === modal || event.target === workModal) {
@@ -90,8 +93,6 @@ backToModalButton.addEventListener('click', function () {
 });
 
 // Fetch Categories for Modal
-const categorySelectModal = document.getElementById('workCategory');
-
 export function fetchCategoriesModal() {
   fetchCategories()
     .then(categoriesData => {
@@ -115,8 +116,6 @@ export function addCategoriesToSelect(categories) {
 fetchCategoriesModal();
 
 // Modal Image Preview
-const uploadButtonLabel = document.getElementById('uploadButtonLabel');
-const photoPreview = document.getElementById('photo-preview');
 let selectedImage = null;
 
 export function addPhoto(event) {
@@ -159,7 +158,6 @@ export function addPhoto(event) {
   }
 }
 
-const fileInput = document.getElementById('uploadButton');
 fileInput.addEventListener('change', event => addPhoto(event));
 
 // Conditions Check to Submit a New Work
@@ -186,11 +184,9 @@ document.addEventListener('DOMContentLoaded', setupFormValidation);
 export function submitNewWork() {
   const titleInput = document.getElementById('workTitle');
   const categoryInput = document.getElementById('workCategory');
-
   const image = selectedImage;
   const title = titleInput.value.trim();
   const category = parseInt(categoryInput.value.trim());
-
   const accessToken = localStorage.getItem('token');
 
   createWork(image, title, category, accessToken)

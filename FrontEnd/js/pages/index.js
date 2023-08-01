@@ -2,6 +2,9 @@ import { fetchWorks, fetchCategories} from '../api/api.js';
 import { addWorkToModal} from '../utils/modal.js';
 
 let allWorks = [];
+const loginText = document.getElementById('login-text');
+const userAuthenticated = typeof localStorage.getItem('token') === 'string';
+const logout = document.getElementById('login-text');
 
 function fetchAndGenerateWorks() {
   fetchWorks()
@@ -84,9 +87,6 @@ function filterAll() {
 }
 
 // User Authentication
-const loginText = document.getElementById('login-text');
-const userAuthenticated = typeof localStorage.getItem('token') === 'string';
-const logout = document.getElementById('login-text');
 logout.addEventListener('click', () => {
   disconnect();
 });

@@ -18,7 +18,7 @@ function fetchAndGenerateWorks() {
 }
 fetchAndGenerateWorks();
 
-function addWorkToGallery(work) {
+export function addWorkToGallery(work) {
   const gallery = document.getElementById('galleryContainer');
   const figure = document.createElement('figure');
   figure.setAttribute('data-work-id', work.id);

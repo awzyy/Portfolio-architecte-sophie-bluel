@@ -1,4 +1,5 @@
 import { fetchWorks, fetchCategories, deleteWork, createWork } from '../api/api.js';
+import { addWorkToGallery } from '../pages/index.js';
 
 const addWorkButton = document.getElementById('addWorkButton');
 const modal = document.getElementById('modal');

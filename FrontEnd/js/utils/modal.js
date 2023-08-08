@@ -35,7 +35,7 @@ export function addWorkToModal(work) {
     deleteWork(work.id, localStorage.getItem('token')).then(deleted => {
       if (deleted) {
         removeWorkOnGallery(work.id);
-        allWorks = allWorks.filter(w => w.id !== work.id);
+        // allWorks = allWorks.filter(w => w.id !== work.id);
       }
     });
   });
@@ -195,7 +195,7 @@ export function submitNewWork() {
       if (newWork) {
         addWorkToGallery(newWork);
         addWorkToModal(newWork);
-        allWorks.push(newWork);
+        // allWorks.push(newWork);
       }
     })
     .catch(error => {

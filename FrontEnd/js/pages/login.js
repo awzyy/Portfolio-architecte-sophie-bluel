@@ -7,7 +7,6 @@ const errorContainer = document.getElementById('error-container')
 loginForm.addEventListener('submit', (event) => {
     event.preventDefault()
 
-
     let data = {
         email: inputEmail.value,
         password: inputPassword.value,

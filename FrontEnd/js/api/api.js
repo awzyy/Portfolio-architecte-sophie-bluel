@@ -5,16 +5,16 @@ export async function fetchWorks() {
   } catch (error) {
     console.log('An error occurred', error);
   }
-  }
+}
   
-  export async function fetchCategories() {
-    try {
-      const response = await fetch('http://localhost:5678/api/categories');
-      return await response.json();
-    } catch (error) {
-      console.log('An error occurred', error);
-    }
+export async function fetchCategories() {
+  try {
+    const response = await fetch('http://localhost:5678/api/categories');
+    return await response.json();
+  } catch (error) {
+    console.log('An error occurred', error);
   }
+}
   
   export async function deleteWork(id, accessToken) {
     return fetch(`http://localhost:5678/api/works/${id}`, {
